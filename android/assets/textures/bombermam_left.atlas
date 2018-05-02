@@ -1,0 +1,62 @@
+
+bombermam_left.png
+size: 256,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+left00
+  rotate: false
+  xy: 2, 262
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+left01
+  rotate: false
+  xy: 2, 132
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+left02
+  rotate: false
+  xy: 68, 262
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+left03
+  rotate: false
+  xy: 2, 2
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+left04
+  rotate: false
+  xy: 68, 132
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+left05
+  rotate: false
+  xy: 134, 262
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+left06
+  rotate: false
+  xy: 68, 2
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
+left07
+  rotate: false
+  xy: 134, 132
+  size: 64, 128
+  orig: 64, 128
+  offset: 0, 0
+  index: -1
