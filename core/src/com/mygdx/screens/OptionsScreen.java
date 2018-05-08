@@ -66,8 +66,8 @@ public class OptionsScreen extends DefaultScreen{
 
         Label.LabelStyle labelStyle =  new Label.LabelStyle(game.bitmapFont, Color.WHITE);
         Slider.SliderStyle sliderStyle = new Slider.SliderStyle();
-        sliderStyle.background = new TextureRegionDrawable(Assets.getInstance().bombermanAtlas.findRegion("slider"));
-        sliderStyle.knob = new TextureRegionDrawable(Assets.getInstance().bombermanAtlas.findRegion("knob"));
+        sliderStyle.background = new TextureRegionDrawable(Assets.getInstance().bomberman_atlas.findRegion("slider"));
+        sliderStyle.knob = new TextureRegionDrawable(Assets.getInstance().bomberman_atlas.findRegions("bomb").get(0));
 
         TextButton.TextButtonStyle  buttonStyle = new TextButton.TextButtonStyle ();
         buttonStyle.font = game.bitmapFont;
@@ -352,7 +352,7 @@ public class OptionsScreen extends DefaultScreen{
 
         game.batch.begin();
 
-        //game.batch.draw(title_background, 0,0, viewport.getWorldWidth(), viewport.getWorldHeight());
+        game.batch.draw(title_background, 0,0, viewport.getWorldWidth(), viewport.getWorldHeight());
 
         game.batch.end();
 

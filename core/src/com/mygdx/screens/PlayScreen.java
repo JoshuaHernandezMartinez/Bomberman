@@ -13,6 +13,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -127,9 +128,9 @@ public class PlayScreen extends DefaultScreen implements EntityListener, Contact
 
         blocks = new TextureRegion[3];
 
-        blocks[Constants.EMPTY_BLOCK] = Assets.getInstance().bombermanAtlas.findRegion("BackgroundTile");
-        blocks[Constants.SOLID_BLOCK] = Assets.getInstance().bombermanAtlas.findRegion("SolidBlock");
-        blocks[Constants.DESTRUCTIBLE_BLOCK] = Assets.getInstance().bombermanAtlas.findRegion("ExplodableBlock");
+        blocks[Constants.EMPTY_BLOCK] = Assets.getInstance().bomberman_atlas.findRegion("BackgroundTile");
+        blocks[Constants.SOLID_BLOCK] = Assets.getInstance().bomberman_atlas.findRegion("SolidBlock");
+        blocks[Constants.DESTRUCTIBLE_BLOCK] = Assets.getInstance().bomberman_atlas.findRegion("ExplodableBlock");
 
         engine = new Engine();
 
@@ -288,30 +289,34 @@ public class PlayScreen extends DefaultScreen implements EntityListener, Contact
         IntMap<Animation> animations = new IntMap<Animation>();
 
         Animation<TextureRegion> frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                Assets.getInstance().bombermanFront.getRegions(), Animation.PlayMode.LOOP);
+                Assets.getInstance().bomberman_atlas.findRegions("bomberWhiteFront"), Animation.PlayMode.LOOP);
 
         frontIdle = frames.getKeyFrame(0);
 
         animations.put(Constants.DOWN, frames);
 
         frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                Assets.getInstance().bombermanBack.getRegions(), Animation.PlayMode.LOOP);
+                Assets.getInstance().bomberman_atlas.findRegions("bomberWhiteBack"), Animation.PlayMode.LOOP);
 
         backIdle = frames.getKeyFrame(0);
 
         animations.put(Constants.UP, frames);
 
         frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                Assets.getInstance().bombermanRight.getRegions(), Animation.PlayMode.LOOP);
+                Assets.getInstance().bomberman_atlas.findRegions("bomberWhiteSide"), Animation.PlayMode.LOOP);
 
         rightIdle = frames.getKeyFrame(0);
 
         animations.put(Constants.RIGHT, frames);
 
         frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                Assets.getInstance().bombermanLeft.getRegions(), Animation.PlayMode.LOOP);
+                Assets.getInstance().bomberman_atlas.findRegions("bomberWhiteSide"), Animation.PlayMode.LOOP);
 
         leftIdle = frames.getKeyFrame(0);
+
+        for(TextureRegion t: frames.getKeyFrames()){
+            t.flip(true, false);
+        }
 
         animations.put(Constants.LEFT, frames);
 
@@ -360,22 +365,25 @@ public class PlayScreen extends DefaultScreen implements EntityListener, Contact
         IntMap<Animation> animations = new IntMap<Animation>();
 
         Animation<TextureRegion> frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                Assets.getInstance().creepDown.getRegions(), Animation.PlayMode.LOOP);
+                Assets.getInstance().bomberman_atlas.findRegions("creepFront"), Animation.PlayMode.LOOP);
 
         animations.put(Constants.DOWN, frames);
 
         frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                Assets.getInstance().creepUp.getRegions(), Animation.PlayMode.LOOP);
+                Assets.getInstance().bomberman_atlas.findRegions("creepBack"), Animation.PlayMode.LOOP);
 
         animations.put(Constants.UP, frames);
 
         frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                Assets.getInstance().creepLeft.getRegions(), Animation.PlayMode.LOOP);
+                Assets.getInstance().bomberman_atlas.findRegions("creepSide"), Animation.PlayMode.LOOP);
+
+        for(TextureRegion t: frames.getKeyFrames())
+            t.flip(true, false);
 
         animations.put(Constants.LEFT, frames);
 
         frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                Assets.getInstance().creepRight.getRegions(), Animation.PlayMode.LOOP);
+                Assets.getInstance().bomberman_atlas.findRegions("creepSide"), Animation.PlayMode.LOOP);
 
         animations.put(Constants.RIGHT, frames);
 
@@ -432,7 +440,7 @@ public class PlayScreen extends DefaultScreen implements EntityListener, Contact
                 45, true, true, (short)0);
         body.setUserData(new UserData(Constants.PORTAL));
 
-        portal.add(new RegionComponent(Assets.getInstance().bombermanAtlas.findRegion("Portal")));
+        portal.add(new RegionComponent(Assets.getInstance().bomberman_atlas.findRegion("Portal")));
         portal.add(new PhysicComponent(body, 0));
 
         engine.addEntity(portal);
@@ -486,10 +494,10 @@ public class PlayScreen extends DefaultScreen implements EntityListener, Contact
 
     }
 
-    private Vector2 world_to_maze_coords(float word_x, float world_Y){
+    private Vector2 world_to_maze_coords(float word_x, float world_y){
         return new Vector2(
                 (int)(word_x * Constants.PPM / Constants.CELL_SIZE),
-                (int)(world_Y * Constants.PPM / Constants.CELL_SIZE)
+                (int)(world_y * Constants.PPM / Constants.CELL_SIZE)
         );
     }
 
@@ -543,7 +551,7 @@ public class PlayScreen extends DefaultScreen implements EntityListener, Contact
 
         IntMap<Animation> animations = new IntMap<Animation>();
         Animation<TextureRegion> frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                Assets.getInstance().bomb.getRegions(), Animation.PlayMode.LOOP);
+                Assets.getInstance().bomberman_atlas.findRegions("bomb"), Animation.PlayMode.LOOP);
         animations.put(Constants.DEFAULT_STATE, frames);
 
         TimerAction TimerAction = new TimerAction() {
@@ -799,10 +807,10 @@ public class PlayScreen extends DefaultScreen implements EntityListener, Contact
 
             if(dir == Constants.RIGHT || dir == Constants.LEFT){
                 frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                        Assets.getInstance().explosion_horizontal.findRegions("middle"), Animation.PlayMode.NORMAL);
+                        Assets.getInstance().bomberman_atlas.findRegions("middleHori"), Animation.PlayMode.NORMAL);
             }else{
                 frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                        Assets.getInstance().explosion_vertical.findRegions("middle"), Animation.PlayMode.NORMAL);
+                        Assets.getInstance().bomberman_atlas.findRegions("middleVer"), Animation.PlayMode.NORMAL);
             }
 
 
@@ -821,10 +829,10 @@ public class PlayScreen extends DefaultScreen implements EntityListener, Contact
 
             if(dir == Constants.RIGHT || dir == Constants.LEFT){
                 frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                        Assets.getInstance().explosion_horizontal.findRegions("origin"), Animation.PlayMode.NORMAL);
+                        Assets.getInstance().bomberman_atlas.findRegions("originHori"), Animation.PlayMode.NORMAL);
             }else{
                 frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                        Assets.getInstance().explosion_vertical.findRegions("origin"), Animation.PlayMode.NORMAL);
+                        Assets.getInstance().bomberman_atlas.findRegions("originVer"), Animation.PlayMode.NORMAL);
             }
 
             if(dir == Constants.LEFT ){
@@ -841,10 +849,10 @@ public class PlayScreen extends DefaultScreen implements EntityListener, Contact
 
             if(dir == Constants.RIGHT || dir == Constants.LEFT){
                 frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                        Assets.getInstance().explosion_horizontal.findRegions("corner"), Animation.PlayMode.NORMAL);
+                        Assets.getInstance().bomberman_atlas.findRegions("cornerHori"), Animation.PlayMode.NORMAL);
             }else{
                 frames = new Animation<TextureRegion>(Constants.ANIMATION_TIME,
-                        Assets.getInstance().explosion_vertical.findRegions("corner"), Animation.PlayMode.NORMAL);
+                        Assets.getInstance().bomberman_atlas.findRegions("cornerVer"), Animation.PlayMode.NORMAL);
             }
 
             if(dir == Constants.LEFT ){
@@ -853,8 +861,9 @@ public class PlayScreen extends DefaultScreen implements EntityListener, Contact
             }
 
             if(dir == Constants.UP){
-                for(TextureRegion t: frames.getKeyFrames())
+                for(TextureRegion t: frames.getKeyFrames()) {
                     t.flip(false, true);
+                }
             }
 
         }
@@ -928,7 +937,7 @@ public class PlayScreen extends DefaultScreen implements EntityListener, Contact
 
         switch (type){
             case Constants.BOMB_POWER_UP:
-                region = Assets.getInstance().bombermanAtlas.findRegion("BombPowerup");
+                region = Assets.getInstance().bomberman_atlas.findRegion("BombPowerup");
                 action = new PowerUpAction() {
                     @Override
                     public void action(Entity player) {
@@ -947,7 +956,7 @@ public class PlayScreen extends DefaultScreen implements EntityListener, Contact
                 };
                 break;
             case Constants.SPEED_POWER_UP:
-                region = Assets.getInstance().bombermanAtlas.findRegion("SpeedPowerup");
+                region = Assets.getInstance().bomberman_atlas.findRegion("SpeedPowerup");
                 action = new PowerUpAction() {
                     @Override
                     public void action(Entity player) {
@@ -966,7 +975,7 @@ public class PlayScreen extends DefaultScreen implements EntityListener, Contact
                 };
                 break;
             case Constants.FLAME_POWER_UP:
-                region = Assets.getInstance().bombermanAtlas.findRegion("FlamePowerup");
+                region = Assets.getInstance().bomberman_atlas.findRegion("FlamePowerup");
                 action = new PowerUpAction() {
                     @Override
                     public void action(Entity player) {

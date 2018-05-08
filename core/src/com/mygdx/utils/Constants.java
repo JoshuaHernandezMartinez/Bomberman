@@ -66,7 +66,6 @@ public class Constants {
     public static final String player_left = "textures/bombermam_left.atlas";
 
     public static final String bomb = "textures/bomb.atlas";
-    public static final String explosion = "textures/explosion.atlas";
 
     public static final String creep_up = "textures/creep_up.atlas";
     public static final String creep_down = "textures/creep_down.atlas";

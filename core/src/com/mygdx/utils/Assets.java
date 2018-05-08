@@ -22,21 +22,7 @@ public class Assets implements Disposable, AssetErrorListener{
 
     // Assets
 
-    public TextureAtlas bombermanAtlas;
-    public TextureAtlas bombermanFront;
-    public TextureAtlas bombermanBack;
-    public TextureAtlas bombermanRight;
-    public TextureAtlas bombermanLeft;
-
-    public TextureAtlas bomb;
-    public TextureAtlas explosion;
-    public TextureAtlas explosion_horizontal;
-    public TextureAtlas explosion_vertical;
-
-    public TextureAtlas creepUp;
-    public TextureAtlas creepLeft;
-    public TextureAtlas creepRight;
-    public TextureAtlas creepDown;
+    public TextureAtlas bomberman_atlas;
 
     public BitmapFont font;
 
@@ -62,26 +48,11 @@ public class Assets implements Disposable, AssetErrorListener{
 
         assetManager.load(Constants.bomberman, TextureAtlas.class);
 
-        assetManager.load(Constants.player_back, TextureAtlas.class);
-        assetManager.load(Constants.player_front, TextureAtlas.class);
-        assetManager.load(Constants.player_right, TextureAtlas.class);
-        assetManager.load(Constants.player_left, TextureAtlas.class);
-
-        assetManager.load(Constants.creep_down, TextureAtlas.class);
-        assetManager.load(Constants.creep_left, TextureAtlas.class);
-        assetManager.load(Constants.creep_right, TextureAtlas.class);
-        assetManager.load(Constants.creep_up, TextureAtlas.class);
-
-        assetManager.load(Constants.bomb, TextureAtlas.class);
-        assetManager.load(Constants.explosion, TextureAtlas.class);
-
         assetManager.load(Constants.blood_animation, TextureAtlas.class);
 
         assetManager.load(Constants.font, BitmapFont.class);
 
         assetManager.load(Constants.title_background, Texture.class);
-        assetManager.load(Constants.explosion_horizonal, TextureAtlas.class);
-        assetManager.load(Constants.explosion_vertical, TextureAtlas.class);
 
         assetManager.load(Constants.number_3, Sound.class);
         assetManager.load(Constants.number_2, Sound.class);
@@ -95,26 +66,11 @@ public class Assets implements Disposable, AssetErrorListener{
 
         assetManager.finishLoading();
 
-        bombermanAtlas = assetManager.get(Constants.bomberman, TextureAtlas.class);
-
-        bombermanFront = assetManager.get(Constants.player_front, TextureAtlas.class);
-        bombermanBack = assetManager.get(Constants.player_back, TextureAtlas.class);
-        bombermanRight = assetManager.get(Constants.player_right, TextureAtlas.class);
-        bombermanLeft = assetManager.get(Constants.player_left, TextureAtlas.class);
-
-        creepDown = assetManager.get(Constants.creep_down, TextureAtlas.class);
-        creepLeft = assetManager.get(Constants.creep_left, TextureAtlas.class);
-        creepUp = assetManager.get(Constants.creep_up, TextureAtlas.class);
-        creepRight = assetManager.get(Constants.creep_right, TextureAtlas.class);
-
-        bomb = assetManager.get(Constants.bomb, TextureAtlas.class);
-        explosion = assetManager.get(Constants.explosion, TextureAtlas.class);
+        bomberman_atlas = assetManager.get(Constants.bomberman, TextureAtlas.class);
 
         font = assetManager.get(Constants.font, BitmapFont.class);
 
         title_background = assetManager.get(Constants.title_background, Texture.class);
-        explosion_horizontal = assetManager.get(Constants.explosion_horizonal, TextureAtlas.class);
-        explosion_vertical = assetManager.get(Constants.explosion_vertical, TextureAtlas.class);
 
         blood_animation = assetManager.get(Constants.blood_animation, TextureAtlas.class);
 
@@ -130,19 +86,8 @@ public class Assets implements Disposable, AssetErrorListener{
         you_lose = assetManager.get(Constants.yow_lose, Sound.class);
         you_win = assetManager.get(Constants.you_win, Sound.class);
 
-        setFiler(bombermanAtlas);
-        setFiler(bombermanFront);
-        setFiler(bombermanBack);
-        setFiler(bombermanRight);
-        setFiler(bombermanLeft);
-
-        setFiler(creepDown);
-        setFiler(creepLeft);
-        setFiler(creepRight);
-        setFiler(creepUp);
-
-        setFiler(bomb);
-        setFiler(explosion);
+        setFiler(bomberman_atlas);
+        setFiler(blood_animation);
 
         title_background.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
